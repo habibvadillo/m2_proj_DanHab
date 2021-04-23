@@ -41,8 +41,6 @@ app.use(session ({
   })
 }));
 
-
-
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
