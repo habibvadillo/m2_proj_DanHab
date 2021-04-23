@@ -1,7 +1,16 @@
-const router = require("express").Router();
+/*
+const router = require("express").Router()
 
 router.get("/locations", (req, res, next) => {
   res.render("index");
 });
 
-module.exports = router;
+
+
+router.get('/locations', (req, res, next) {
+  
+})
+
+
+module.exports = router
+*/

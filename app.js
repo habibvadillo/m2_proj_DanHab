@@ -47,8 +47,8 @@ app.use(
 const index = require("./routes/index");
 app.use("/", index);
 
-const location = require("./routes/location.routes");
-app.use("/", location);
+//const location = require("./routes/location.routes");
+//app.use("/", location);
 
 const auth = require("./routes/auth.routes");
 app.use("/", auth);

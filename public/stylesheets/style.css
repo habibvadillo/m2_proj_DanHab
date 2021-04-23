@@ -1,12 +1,41 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-  color: #00b7ff;
+nav {
+  background-color: #a5f2f3;
+  height: 100px;
 }
 
-h1 {
-  color: 15px;
+nav img {
+  width: 100px;
+  position: absolute;
 }
+
+nav ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav ul li {
+  border: 1px solid #45e1e4;
+  background: #4c898a;
+  padding: 11px 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+/*# sourceMappingURL=style.css.map */
