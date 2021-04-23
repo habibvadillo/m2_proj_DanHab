@@ -54,6 +54,17 @@ description
 GET /locations/:userId
 renders all locations of the user
 
+# Views
+
+- layout.hbs
+  \*\* AUTH
+- signup.hbs
+- signin.hbs
+  \*\* LOCATIONS
+- locations.hbs
+- locations-form.hbs
+- locations-user.hbs
+
 # Models
 
 User model
