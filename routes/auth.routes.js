@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const { findOneAndDelete } = require("../models/User.model");
 const UserModel = require("../models/User.model");
 
 // Shows the user the sign in form
@@ -77,6 +78,12 @@ router.post("/signin", (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.app.locals.isUserLoggedIn = false;
+  req.session.destroy();
+  res.redirect("/");
 });
 
 module.exports = router;
