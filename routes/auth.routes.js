@@ -14,8 +14,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, email, password } = req.body;
-  //ifBusiness not included
+  const { username, email, password, isPerson } = req.body;
   if (!username || !email || !password) {
     res.render("auth/signup.hbs", { msg: "Please fill in all details" });
     return;
@@ -41,11 +40,21 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(12);
   const hash = bcrypt.hashSync(password, salt);
 
+  if (isPerson == "business") {
+    isBusiness = true
+  } else {
+    isBusiness = false
+  }
+
   // create user
-  UserModel.create({ username, email, password: hash })
+  UserModel.create({ username, email, password: hash, isBusiness })
     .then(() => {
-      // define the route
-      res.redirect("/");
+      if (!isBusiness) {
+        res.redirect("user/profile");
+      }
+      else {
+        res.redirect("user/businessprofile");
+      }
     })
     .catch((err) => {
       next();
@@ -54,7 +63,6 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/signin", (req, res, next) => {
   const { email, password } = req.body;
-
   UserModel.findOne({ email })
     .then((response) => {
       if (!response) {
