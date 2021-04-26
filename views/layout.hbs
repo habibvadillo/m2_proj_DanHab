@@ -11,22 +11,25 @@
 
   <body>
     <nav>
-      <a href="/"><img src="/images/logo.png" alt="logo" /></a>
-      <ul>
-        <li><a href="/locations">Locations</a></li>
+      <a href="/" id="logo"><img src="/images/logo.png" alt="logo" /></a>
+      <ul id="left-nav">
+        <a href="/locations"><li>Locations</li></a>
+        <a href="/locations"><li>About Us</li></a>
+        <a href="/locations"><li>Contact Us</li></a>
+        <a href="/locations"><li>For Business</li></a>
+      </ul>
+      <ul id="right-nav">
         {{#if isUserLoggedIn}}
-        <li><a href="/user/locations/create">Create new Location</a></li>
-        <li><a href="/user/locations">My Locations</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <a href="/user/locations/create"><li>Create new Location</li></a>
+        <a href="/user/locations"><li>My Locations</li></a>
+        <a href="/logout"><li>Logout</li></a>
         {{else}}
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/signin">SignIn</a></li>
+        <a href="/signup"><li id="signup">Sign Up</li></a>
+        <a href="/signin"><li id="signin">Sign In</li></a>
         {{/if}}
       </ul>
     </nav>
-
-    {{{body}}}
-
+    <main>{{{body}}}</main>
     <script src="/js/script.js"></script>
   </body>
 </html>
