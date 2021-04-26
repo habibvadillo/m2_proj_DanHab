@@ -13,7 +13,10 @@
     <nav>
       <a href="/"><img src="/images/logo.png" alt="logo" /></a>
       <ul>
+        <li><a href="/locations">Locations</a></li>
         {{#if isUserLoggedIn}}
+        <li><a href="/user/locations/create">Create new Location</a></li>
+        <li><a href="/user/locations">My Locations</a></li>
         <li><a href="/logout">Logout</a></li>
         {{else}}
         <li><a href="/signup">Signup</a></li>

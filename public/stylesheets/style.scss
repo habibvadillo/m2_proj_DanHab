@@ -7,6 +7,9 @@ body {
 nav {
   background-color: #a5f2f3;
   height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   img {
     width: 100px;
     position: absolute;
@@ -14,8 +17,6 @@ nav {
   ul {
     list-style: none;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     li {
       border: 1px solid #45e1e4;
       background: #4c898a;
