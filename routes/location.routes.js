@@ -16,19 +16,7 @@ router.get("/locations", (req, res, next) => {
   });
 });
 
-router.get('/locations/create', (req, res, next) => {
-  res.render('locations/locations-create.hbs')
-})
 
-router.post("/locations/create", (req, res, next) => {
-  const {name, location} = req.body
-  Location.create({name, location})
-  .then((result) => {
-    res.redirect("/locations")
-  }).catch((err) => {
-    console.log(err)
-  });
-})
 
 module.exports = router
 
