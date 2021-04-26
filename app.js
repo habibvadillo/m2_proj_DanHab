@@ -56,6 +56,9 @@ app.use("/", auth);
 const user = require("./routes/user.routes");
 app.use("/", user);
 
+app.get("*", (req, res, next) => {
+  res.render("not-found");
+});
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
