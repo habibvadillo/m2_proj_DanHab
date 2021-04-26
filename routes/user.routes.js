@@ -4,6 +4,11 @@ const Location = require("../models/Location.model");
 
 //business profile
 
+router.get("/user/businessprofile", (req, res, next) => {
+  res.render("user/businessprofile.hbs");
+});
+
+// business profile locations
 router.get("/user/locations/create", (req, res, next) => {
   res.render("locations/locations-create.hbs");
 });
@@ -36,5 +41,9 @@ router.get("/user/locations", (req, res, next) => {
 });
 
 //personal profile
+router.get("/user/profile", (req, res, next) => {
+  res.render("user/profile.hbs");
+});
+
 
 module.exports = router;
