@@ -1,0 +1,16 @@
+@import "../variables.scss";
+
+header {
+  height: 70vh;
+  width: 100%;
+  padding: $all-content-padding;
+  background-color: $color-primary;
+}
+section.location-preview {
+  padding: $all-content-padding;
+  padding: 0px;
+  height: 90vh;
+  width: 100%;
+  background-color: white;
+  border-bottom: 5px solid gray;
+}

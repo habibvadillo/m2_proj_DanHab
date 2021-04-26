@@ -1,0 +1,16 @@
+header {
+  height: 70vh;
+  width: 100%;
+  padding: 0px 20px;
+  background-color: #18a0fb;
+}
+
+section.location-preview {
+  padding: 0px 20px;
+  padding: 0px;
+  height: 90vh;
+  width: 100%;
+  background-color: white;
+  border-bottom: 5px solid gray;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,16 +1,19 @@
-$color-primary: #18a0fb;
-main {
-  padding: 0px 20px;
-}
+@import "../variables.scss";
+
 body {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0px;
   background-color: $color-primary;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
 }
 nav {
+  z-index: 100;
   background-color: white;
-  padding: 0px 20px;
+  padding: $all-content-padding;
   height: 100px;
   display: flex;
   justify-content: flex-end;
@@ -47,4 +50,12 @@ nav {
       }
     }
   }
+}
+footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
+  background-color: white;
+  padding: $all-content-padding;
 }
