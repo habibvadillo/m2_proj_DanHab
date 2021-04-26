@@ -1,6 +1,18 @@
 <h2>All locations</h2>
 
-{{#each locations}}
-  {{this.name}}
-  {{this.location}}
+<form action="/locations" method="GET">
+  <label for="country">Country:</label>
+  <select name="country" id="country">
+    {{#each uniques}}
+    <option value="{{ this }}">{{ this }}</option>
+    {{/each}}
+  </select>
+  <button type="submit">Search</button>
+</form>
+{{#each result}}
+<div>
+  <p>Name: {{ this.name }}</p>
+  <p>Country: {{ this.location }}</p>
+</div>
+<br />
 {{/each}}
