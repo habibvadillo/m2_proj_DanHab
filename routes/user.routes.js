@@ -9,14 +9,11 @@ router.get('/user/locations/create', (req, res, next) => {
 })
 
 router.post("/user/locations/create", (req, res, next) => {
-
   const {name, location} = req.body
-  
   const {_id} = req.session.userInfo
   console.log(name, location, _id)
   Location.create({name, location, owner: _id})
   .then((result) => {
-
     res.redirect("user/locations")
   }).catch((err) => {
     console.log(err)
@@ -34,8 +31,6 @@ router.get("/user/locations", (req, res, next) => {
     console.log(err)
   });
 })
-
-
 
 
 
