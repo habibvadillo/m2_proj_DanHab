@@ -27,9 +27,8 @@ router.get("/locations", (req, res, next) => {
 
 // EDIT LOCATION
 router.get("/user/locations/:id/edit", (req, res, next) => {
-  console.log(req.params);
-  const { _id } = req.params;
-  Location.findById(_id)
+  const { id } = req.params;
+  Location.findById(id)
     .then((result) => {
       res.render("user/update-location.hbs", { result });
     })
@@ -39,9 +38,9 @@ router.get("/user/locations/:id/edit", (req, res, next) => {
 });
 
 router.post("/user/locations/:id/edit", (req, res, next) => {
-  const { _id } = req.params;
+  const { id } = req.params;
   const { name, location } = req.body;
-  Location.findByIdAndUpdate(_id, { name, location })
+  Location.findByIdAndUpdate(id, { name, location })
     .then((result) => {
       res.redirect("/user/locations");
     })
