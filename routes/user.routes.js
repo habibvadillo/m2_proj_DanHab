@@ -100,14 +100,16 @@ router.post("/bookpass", (req, res, next) => {
   const { id } = req.body;
   Location.findById(id)
     .then((result) => {
+      console.log(result);
       Usermodel.findByIdAndUpdate(req.session.userInfo._id, {
-        $push: { skiPasses: { id } },
+        $push: { skiPasses: id },
       })
         .then((result) => {
+          console.log(result);
           res.redirect("user/profile");
         })
         .catch((err) => {
-          console.log(err);
+          console.log("FAILED!!");
         });
     })
     .catch((err) => {
