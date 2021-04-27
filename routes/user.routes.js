@@ -3,22 +3,31 @@ const router = require("express").Router();
 const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
 
-//business profile
+// BUSINESS ACCOUNT
 
-router.get("/user/businessprofile", (req, res, next) => {
+// middleware to protect routes
+const authorize = (req, res, next) => {
+  if (req.session.userInfo) {
+    next();
+  } else {
+    res.redirect("/signin");
+  }
+};
+
+router.get("/user/businessprofile", authorize, (req, res, next) => {
   res.render("user/businessprofile.hbs", {
     styles: "user/businessprofile.css",
   });
 });
 
 // business profile locations
-router.get("/user/locations/create", (req, res, next) => {
+router.get("/user/locations/create", authorize, (req, res, next) => {
   res.render("locations/locations-create.hbs", {
     styles: "locations/locations-create.css",
   });
 });
 
-router.post("/user/locations/create", (req, res, next) => {
+router.post("/user/locations/create", authorize, (req, res, next) => {
   const { name, location } = req.body;
 
   const { _id } = req.session.userInfo;
@@ -32,7 +41,7 @@ router.post("/user/locations/create", (req, res, next) => {
     });
 });
 
-router.get("/user/locations", (req, res, next) => {
+router.get("/user/locations", authorize, (req, res, next) => {
   const { _id } = req.session.userInfo;
   console.log(_id);
   Location.find({ owner: _id })
@@ -49,7 +58,7 @@ router.get("/user/locations", (req, res, next) => {
 });
 
 // EDIT LOCATION
-router.get("/user/locations/:id/edit", (req, res, next) => {
+router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findById(id)
     .then((result) => {
@@ -63,7 +72,7 @@ router.get("/user/locations/:id/edit", (req, res, next) => {
     });
 });
 
-router.post("/user/locations/:id/edit", (req, res, next) => {
+router.post("/user/locations/:id/edit", authorize, (req, res, next) => {
   const { id } = req.params;
   const { name, location } = req.body;
   Location.findByIdAndUpdate(id, { name, location })
@@ -76,7 +85,7 @@ router.post("/user/locations/:id/edit", (req, res, next) => {
 });
 
 // DELETE LOCATION
-router.post("/user/locations/:id/delete", (req, res, next) => {
+router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findByIdAndDelete(id)
     .then(() => res.redirect("/user/locations"))
@@ -84,7 +93,7 @@ router.post("/user/locations/:id/delete", (req, res, next) => {
 });
 
 //personal profile ////////
-router.get("/user/profile", (req, res, next) => {
+router.get("/user/profile", authorize, (req, res, next) => {
   Usermodel.findById(req.session.userInfo._id)
     .populate("skiPasses")
     .then((data) => {
