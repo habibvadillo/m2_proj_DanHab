@@ -19,7 +19,11 @@ router.get("/locations", (req, res, next) => {
         }
       });
       Location.find(queryObj).then((result) => {
-        res.render("locations/locations.hbs", { result, uniques });
+        res.render("locations/locations.hbs", {
+          result,
+          uniques,
+          styles: "locations/locations.css",
+        });
       });
     })
     .catch((err) => {});
@@ -30,7 +34,10 @@ router.get("/user/locations/:id/edit", (req, res, next) => {
   const { id } = req.params;
   Location.findById(id)
     .then((result) => {
-      res.render("user/update-location.hbs", { result });
+      res.render("user/update-location.hbs", {
+        result,
+        styles: "user/update-location.css",
+      });
     })
     .catch((err) => {
       console.log(err);

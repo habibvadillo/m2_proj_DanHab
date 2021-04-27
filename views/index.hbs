@@ -1,13 +1,13 @@
 <header>
   <h1>Find your next Skiing Getaway</h1>
   <form action="/locations" method="GET">
-    <label for="country">Country:</label>
+    <label for="country">Pick the country to search for: </label>
     <select name="country" id="country">
       {{#each uniques}}
       <option value="{{ this }}">{{ this }}</option>
       {{/each}}
     </select>
-    <button type="submit">Search</button>
+    <button type="submit">Lets Snow!</button>
   </form>
 </header>
 <main>

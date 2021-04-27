@@ -5,12 +5,16 @@ const Location = require("../models/Location.model");
 //business profile
 
 router.get("/user/businessprofile", (req, res, next) => {
-  res.render("user/businessprofile.hbs");
+  res.render("user/businessprofile.hbs", {
+    styles: "user/businessprofile.css",
+  });
 });
 
 // business profile locations
 router.get("/user/locations/create", (req, res, next) => {
-  res.render("locations/locations-create.hbs");
+  res.render("locations/locations-create.hbs", {
+    styles: "locations/locations-create.css",
+  });
 });
 
 router.post("/user/locations/create", (req, res, next) => {
@@ -33,7 +37,10 @@ router.get("/user/locations", (req, res, next) => {
   Location.find({ owner: _id })
 
     .then((locations) => {
-      res.render("user/user-locations", { locations });
+      res.render("user/user-locations", {
+        locations,
+        styles: "user/user-locations.css",
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -42,8 +49,7 @@ router.get("/user/locations", (req, res, next) => {
 
 //personal profile
 router.get("/user/profile", (req, res, next) => {
-  res.render("user/profile.hbs");
+  res.render("user/profile.hbs", { styles: "user/profile.css" });
 });
-
 
 module.exports = router;

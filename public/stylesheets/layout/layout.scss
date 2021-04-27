@@ -23,13 +23,14 @@ nav {
     margin-right: auto;
   }
   img {
-    width: 100px;
+    width: 200px;
   }
   ul {
     list-style: none;
     display: flex;
     padding: 0px;
-    #signup {
+    #signup,
+    #logout {
       background-color: $color-primary;
       color: white;
       border-radius: 5px;

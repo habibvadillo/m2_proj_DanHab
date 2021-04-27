@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
         }
       });
       console.log(uniques);
-      res.render("index", { styles: "/index/index.css", uniques });
+      res.render("index", { styles: "index/index.css", uniques });
     })
     .catch((err) => {});
 });
