@@ -1,0 +1,49 @@
+@import "../variables.scss";
+
+header {
+  h1 {
+    font-size: 4em;
+    color: white;
+    background-color: $color-primary;
+    padding: 10px 20px;
+  }
+  height: 100vh;
+  width: 100%;
+  padding: $all-content-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../images/ski3.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  form {
+    font-size: 2em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    select {
+      font-size: 0.5em;
+    }
+    button {
+      border: none;
+      border-radius: 15px;
+      color: white;
+      background-color: $color-primary;
+      font-size: 0.5em;
+      margin-top: 10px;
+      flex-basis: 100%;
+      height: 40px;
+    }
+  }
+}
+section.location-preview {
+  padding: $all-content-padding;
+  padding: 0px;
+  height: 90vh;
+  width: 100%;
+  background-image: url(../../images/resort-1.jpg);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border-bottom: 5px solid gray;
+}

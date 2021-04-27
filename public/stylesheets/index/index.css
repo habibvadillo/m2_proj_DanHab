@@ -1,0 +1,70 @@
+header {
+  height: 100vh;
+  width: 100%;
+  padding: 0px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url(../../images/ski3.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+header h1 {
+  font-size: 4em;
+  color: white;
+  background-color: #18a0fb;
+  padding: 10px 20px;
+}
+
+header form {
+  font-size: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header form select {
+  font-size: 0.5em;
+}
+
+header form button {
+  border: none;
+  border-radius: 15px;
+  color: white;
+  background-color: #18a0fb;
+  font-size: 0.5em;
+  margin-top: 10px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  height: 40px;
+}
+
+section.location-preview {
+  padding: 0px 20px;
+  padding: 0px;
+  height: 90vh;
+  width: 100%;
+  background-image: url(../../images/resort-1.jpg);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border-bottom: 5px solid gray;
+}
+/*# sourceMappingURL=index.css.map */

@@ -19,41 +19,24 @@ router.get("/locations", (req, res, next) => {
         }
       });
       Location.find(queryObj).then((result) => {
-        res.render("locations/locations.hbs", { result, uniques });
+        res.render("locations/locations.hbs", {
+          result,
+          uniques,
+          styles: "locations/locations.css",
+        });
       });
     })
     .catch((err) => {});
 });
 
-// EDIT LOCATION
-router.get("/user/locations/:id/edit", (req, res, next) => {
+router.get("/locations/:id", (req, res, next) => {
   const {id} = req.params
   Location.findById(id)
   .then((result) => {
-    res.render('user/update-location.hbs', {result})
+    res.render('locations/locationpage.hbs', {result})
   }).catch((err) => {
     console.log(err)
   });
 })
-
-router.post("/user/locations/:id/edit", (req, res, next) => {
-  const {id} = req.params
-  const {name, location} = req.body
-  Location.findByIdAndUpdate(id, {name, location})
-  .then((result) => {
-    res.redirect('/user/locations')
-  }).catch((err) => {
-    console.log(err)
-  });
-})
-
-// DELETE LOCATION
-router.post('/user/locations/:id/delete', (req, res, next) => {
-  const {id}= req.params
-  Location.findByIdAndDelete(id)
-  .then(()=>res.redirect('/user/locations'))
-  .catch((err)=>console.log(err))
-});
-
 
 module.exports = router;

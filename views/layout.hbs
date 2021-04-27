@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{ title }}</title>
-
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Jorge's Peaks</title>
+    <link rel="stylesheet" href="/stylesheets/layout/layout.css" />
+    <link rel="stylesheet" href="/stylesheets/{{ styles }}" />
   </head>
 
   <body>
@@ -22,14 +22,20 @@
         {{#if isUserLoggedIn}}
         <a href="/user/locations/create"><li>Create new Location</li></a>
         <a href="/user/locations"><li>My Locations</li></a>
-        <a href="/logout"><li>Logout</li></a>
+        <a href="/logout"><li id="logout">Logout</li></a>
         {{else}}
         <a href="/signup"><li id="signup">Sign Up</li></a>
         <a href="/signin"><li id="signin">Sign In</li></a>
         {{/if}}
       </ul>
     </nav>
-    <main>{{{body}}}</main>
+
+    {{{body}}}
+
+    <footer>
+      <p>Copyright &#169; 2021</p>
+    </footer>
+
     <script src="/js/script.js"></script>
   </body>
 </html>
