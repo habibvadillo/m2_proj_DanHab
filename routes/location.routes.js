@@ -25,17 +25,12 @@ router.get("/locations", (req, res, next) => {
     .catch((err) => {});
 });
 
-
 // EDIT LOCATION
 router.get("/user/locations/:id/edit", (req, res, next) => {
   const {id} = req.params
-  console.log(req.params)
-
   Location.findById(id)
   .then((result) => {
-    console.log(result)
     res.render('user/update-location.hbs', {result})
-    
   }).catch((err) => {
     console.log(err)
   });
