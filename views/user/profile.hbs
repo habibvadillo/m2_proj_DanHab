@@ -1,2 +1,9 @@
-<h2>Welcome to your profile</h2>
-<h3>Create amazing memories</h3>
+<main>
+  <h2>Welcome to your profile</h2>
+  <h3>Create amazing memories</h3>
+  {{#each data.skiPasses}}
+  <h3>Ski Pass:</h3>
+  <p>Ski Resort: {{ this.name }}</p>
+  <p>Country: {{ this.location }}</p>
+  {{/each}}
+</main>

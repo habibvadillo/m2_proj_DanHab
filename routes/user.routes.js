@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Location = require("../models/Location.model");
-const Usermodel = require("../models/User.model")
+const Usermodel = require("../models/User.model");
 
 //business profile
 
@@ -85,29 +85,34 @@ router.post("/user/locations/:id/delete", (req, res, next) => {
 
 //personal profile ////////
 router.get("/user/profile", (req, res, next) => {
-  res.render("user/profile.hbs", { styles: "user/profile.css" });
+  Usermodel.findById(req.session.userInfo._id)
+    .populate("skiPasses")
+    .then((data) => {
+      res.render("user/profile.hbs", {
+        data,
+        styles: "user/profile.css",
+      });
+    })
+    .catch((err) => {});
 });
 
-
 router.post("/bookpass", (req, res, next) => {
-  const {id} = req.body
-  console.log(id)
-  console.log(req.body)
-  Location.findById (id)
-  .then((result) => {
-    console.log(result)
-    console.log(req.session.userInfo)
-    Usermodel.findByIdAndUpdate(req.session.userInfo._id, {username: 'Jason Bourne'})
+  const { id } = req.body;
+  Location.findById(id)
     .then((result) => {
-      console.log(result)
-      res.redirect("user/profile")
-
-    }).catch((err) => {
-      console.log(err)
+      Usermodel.findByIdAndUpdate(req.session.userInfo._id, {
+        $push: { skiPasses: { id } },
+      })
+        .then((result) => {
+          res.redirect("user/profile");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  }).catch((err) => {
-    console.log(err)
-  });
-})
+});
 
 module.exports = router;

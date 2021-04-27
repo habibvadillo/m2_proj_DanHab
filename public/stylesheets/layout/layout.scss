@@ -1,5 +1,9 @@
 @import "../variables.scss";
 
+main {
+  padding: $all-content-padding;
+}
+
 body {
   height: auto;
   display: flex;

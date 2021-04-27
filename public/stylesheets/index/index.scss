@@ -2,6 +2,7 @@
 
 header {
   h1 {
+    width: auto;
     font-size: 4em;
     color: white;
     background-color: $color-primary;
@@ -42,8 +43,5 @@ section.location-preview {
   padding: 0px;
   height: 90vh;
   width: 100%;
-  background-image: url(../../images/resort-1.jpg);
-  background-repeat: no-repeat;
-  background-size: auto 100%;
   border-bottom: 5px solid gray;
 }

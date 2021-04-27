@@ -30,13 +30,17 @@ router.get("/locations", (req, res, next) => {
 });
 
 router.get("/locations/:id", (req, res, next) => {
-  const {id} = req.params
+  const { id } = req.params;
   Location.findById(id)
-  .then((result) => {
-    res.render('locations/locationpage.hbs', {result})
-  }).catch((err) => {
-    console.log(err)
-  });
-})
+    .then((result) => {
+      res.render("locations/locationpage.hbs", {
+        result,
+        styles: "locations/locationpage.css",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 module.exports = router;
