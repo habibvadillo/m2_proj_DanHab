@@ -5,9 +5,9 @@ const Usermodel = require("../models/User.model");
 
 // BUSINESS ACCOUNT
 
-// middleware to protect routes
+// middleware to protect routes for business
 const authorize = (req, res, next) => {
-  if (req.session.userInfo) {
+  if (req.session?.userInfo && req.session?.userInfo?.isBusiness) {
     next();
   } else {
     res.redirect("/signin");
@@ -93,6 +93,7 @@ router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
 });
 
 //personal profile ////////
+
 router.get("/user/profile", authorize, (req, res, next) => {
   Usermodel.findById(req.session.userInfo._id)
     .populate("skiPasses")
