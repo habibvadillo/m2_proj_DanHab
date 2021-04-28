@@ -21,15 +21,9 @@ router.get("/user/businessprofile", authorize, (req, res, next) => {
 });
 
 // business profile locations
-<<<<<<< HEAD
 router.get("/user/locations/create", (req, res, next) => {
   res.render("user/user-locations-create.hbs", {
     styles: "user/user-locations-create.css",
-=======
-router.get("/user/locations/create", authorize, (req, res, next) => {
-  res.render("locations/locations-create.hbs", {
-    styles: "locations/locations-create.css",
->>>>>>> 3f32b3b7aac4116820232a4bc7aba651ee3a7aef
   });
 });
 

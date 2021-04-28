@@ -21,8 +21,9 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, email, password, isBusiness = "false" } = req.body;
-  console.log(isBusiness, "isBusiness value");
+  const { username, email, password, isBusiness = false } = req.body;
+  console.log(req.body);
+  console.log(typeof isBusiness, "isBusiness value");
   if (!username || !email || !password) {
     res.render("auth/signup.hbs", {
       msg: "Please fill in all details",
@@ -32,25 +33,25 @@ router.post("/signup", (req, res, next) => {
   }
 
   // password validation
-  // const passCharacters = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
-  // if (!passCharacters.test(password)) {
-  //   res.render("auth/signup.hbs", {
-  //     styles: "auth/signup.css",
-  //     msg:
-  //       "Password must be min. 8 characters, must have a number, an uppercase Letter, and a special character",
-  //   });
-  //   return;
-  // }
+  const passCharacters = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
+  if (!passCharacters.test(password)) {
+    res.render("auth/signup.hbs", {
+      styles: "auth/signup.css",
+      msg:
+        "Password must be min. 8 characters, must have a number, an uppercase Letter, and a special character",
+    });
+    return;
+  }
 
   // email validation
-  // const emailAt = /^[^@ ]+@[^@ ]+\.[^@ ]+$/;
-  // if (!emailAt.test(String(email).toLowerCase())) {
-  //   res.render("auth/signup.hbs", {
-  //     styles: "auth/signup.css",
-  //     msg: "Please enter a valid email",
-  //   });
-  //   return;
-  // }
+  const emailAt = /^[^@ ]+@[^@ ]+\.[^@ ]+$/;
+  if (!emailAt.test(String(email).toLowerCase())) {
+    res.render("auth/signup.hbs", {
+      styles: "auth/signup.css",
+      msg: "Please enter a valid email",
+    });
+    return;
+  }
 
   const salt = bcrypt.genSaltSync(12);
   const hash = bcrypt.hashSync(password, salt);
@@ -64,13 +65,7 @@ router.post("/signup", (req, res, next) => {
     skiPasses: [],
   })
     .then(() => {
-      console.log(isBusiness);
-      app.locals.isUserLoggedIn = true;
-      if (isBusiness) {
-        res.redirect("user/businessprofile");
-      } else {
-        res.redirect("user/profile");
-      }
+      res.redirect("/signin");
     })
     .catch((err) => {
       next();
