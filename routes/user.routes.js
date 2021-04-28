@@ -2,9 +2,10 @@ const router = require("express").Router();
 
 const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
+const Reservation = require("../models/Reservation.model");
+const uploader = require('../middlewares/cloudinary.config.js');
 
 // BUSINESS ACCOUNT
-
 // middleware to protect routes for business
 const authorize = (req, res, next) => {
   if (req.session?.userInfo && req.session?.userInfo?.isBusiness) {
@@ -29,7 +30,6 @@ router.get("/user/locations/create", authorize, (req, res, next) => {
 
 router.post("/user/locations/create", authorize, (req, res, next) => {
   const { name, location } = req.body;
-
   const { _id } = req.session.userInfo;
   console.log(name, location, _id);
   Location.create({ name, location, owner: _id })
@@ -92,39 +92,58 @@ router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-//personal profile ////////
 
-router.get("/user/profile", authorize, (req, res, next) => {
+// PERSONAL ACCOUNT
+// middleware to protect routes for personal account
+const authorizePerson = (req, res, next) => {
+  if (req.session?.userInfo) {
+    next();
+  } else {
+    res.redirect("/signin");
+  }
+};
+
+router.get("/user/profile", authorizePerson, (req, res, next) => {
   Usermodel.findById(req.session.userInfo._id)
-    .populate("skiPasses")
     .then((data) => {
-      res.render("user/profile.hbs", {
-        data,
-        styles: "user/profile.css",
-      });
+      Reservation.find({user: data._id})
+      .populate('location')
+      .populate('user')
+      
+      .then((response) => {
+        res.render("user/profile.hbs", {
+          response,
+          styles: "user/profile.css",
+        });
+
+      })
     })
     .catch((err) => {});
 });
 
+
 router.post("/bookpass", (req, res, next) => {
-  const { id } = req.body;
-  Location.findById(id)
-    .then((result) => {
-      console.log(result);
-      Usermodel.findByIdAndUpdate(req.session.userInfo._id, {
-        $push: { skiPasses: id },
-      })
-        .then((result) => {
-          console.log(result);
-          res.redirect("user/profile");
-        })
-        .catch((err) => {
-          console.log("FAILED!!");
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const {id} = req.body;
+  const {_id} = req.session.userInfo
+  Reservation.create({skiTicketDate: Date.now(), location: id, user: _id})
+  .then((result) => {
+    res.redirect('/user/profile')
+  }).catch((err) => {
+    console.log(err)
+  });
 });
 
+// Cancel Ski Pass
+router.post("/user/profile/skipasses/:id/cancel", authorizePerson, (req, res, next) => {
+  const { id } = req.params;
+  Reservation.findByIdAndDelete(id)
+  .then((result) => {
+    res.redirect("/user/profile")
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+})
+
 module.exports = router;
+
