@@ -1,14 +1,15 @@
-<h2>Welcome to your profile</h2>
-
-<form method="POST" action="/signin">
-  <label>Email</label>
-  <input type="email" name="email" placeholder="Enter your email"  >
-
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your Password"  >
-  <button type="submit">Sign In</button>
-</form>
-
-{{#if msg}}
-  <div class="error">{{msg}}</div>
-{{/if}}
+<main>
+  <div id="signin-container">
+    <form method="POST" action="/signin">
+      <input type="email" name="email" placeholder="Your Email" />
+      <br />
+      <input type="password" name="password" placeholder="Your Password" />
+      <br />
+      <button type="submit">Sign In</button>
+    </form>
+    {{#if msg}}
+    <br />
+    <div class="error">{{ msg }}</div>
+    {{/if}}
+  </div>
+</main>

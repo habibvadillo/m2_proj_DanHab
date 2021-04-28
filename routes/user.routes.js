@@ -13,8 +13,8 @@ router.get("/user/businessprofile", (req, res, next) => {
 
 // business profile locations
 router.get("/user/locations/create", (req, res, next) => {
-  res.render("locations/locations-create.hbs", {
-    styles: "locations/locations-create.css",
+  res.render("user/user-locations-create.hbs", {
+    styles: "user/user-locations-create.css",
   });
 });
 
