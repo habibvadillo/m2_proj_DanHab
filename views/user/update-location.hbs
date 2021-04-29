@@ -25,18 +25,24 @@
 
     <br>
 
-    <input type="file" name="imageUrl" value="{{result.arr}} accept="image/png, image/jpg">
+    {{#each result.locPicture}}
+    <img src="{{this}}" alt="", width="200px">
+    {{/each}}
+    <br>
+
+    <input type="file" name="imageUrl" value="{{result.locPicture.[0]}}" accept="image/png, image/jpg">
 
     <br>
 
-    <input type="file" name="imageUrl" value="{{result.arr}} accept="image/png, image/jpg">
+    <input type="file" name="imageUrl" value="{{result.locPicture.[1]}}" accept="image/png, image/jpg">
 
     <br>
 
-    <input type="file" name="imageUrl" value="{{result.arr}} accept="image/png, image/jpg">
+    <input type="file" name="imageUrl" value="{{result.locPicture.[2]}}" accept="image/png, image/jpg">
+
     <br>
 
-    <input type="file" name="imageUrl" value="{{result.arr}} accept="image/png, image/jpg">
+    <input type="file" name="imageUrl" value="{{result.locPicture.[3]}}" accept="image/png, image/jpg">
     <br>
     
     <button type="submit">Update</button>
