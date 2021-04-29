@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAEA,AAAA,MAAM,CAAC;EACL,OAAO,ECFa,GAAG,CAAC,IAAI;CDM7B;;AALD,AAEE,MAFI,CAEJ,EAAE,CAAC;EACD,SAAS,EAAE,IAAI;CAChB",
     "sources": [
-        "locationpage.scss"
+        "locationpage.scss",
+        "../variables.scss"
     ],
     "names": [],
     "file": "locationpage.css"
