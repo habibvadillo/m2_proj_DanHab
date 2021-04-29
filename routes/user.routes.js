@@ -3,9 +3,8 @@ const router = require("express").Router();
 const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
 const Reservation = require("../models/Reservation.model");
-const uploader = require('../middlewares/cloudinary.config.js');
+const uploader = require("../middlewares/cloudinary.config.js");
 const { single } = require("../middlewares/cloudinary.config.js");
-
 
 /// BUSINESS ACCOUNT ///
 
@@ -32,25 +31,36 @@ router.get("/user/locations/create", (req, res, next) => {
   });
 });
 
-router.post("/user/locations/create", authorize, uploader.array("imageUrl"), (req, res, next) => {
-  const { name, location, description, website} = req.body;
-  const { _id } = req.session.userInfo;
-  let arr = req.files.map(elem => {
-    return elem.path
-  })
-  Location.create({ name, location, description, website, owner: _id, locPicture:arr })
-    .then((result) => {
-      res.redirect("/user/locations");
-    })
-    .catch((err) => {
-      console.log(err);
+router.post(
+  "/user/locations/create",
+  authorize,
+  uploader.array("imageUrl"),
+  (req, res, next) => {
+    const { name, location, description, website } = req.body;
+    const { _id } = req.session.userInfo;
+    let arr = req.files.map((elem) => {
+      return elem.path;
     });
-});
+    Location.create({
+      name,
+      location,
+      description,
+      website,
+      owner: _id,
+      locPicture: arr,
+    })
+      .then((result) => {
+        res.redirect("/user/locations");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
 
 // Business locations
 router.get("/user/locations", authorize, (req, res, next) => {
   const { _id } = req.session.userInfo;
-  console.log(_id);
   Location.find({ owner: _id })
 
     .then((locations) => {
@@ -89,9 +99,10 @@ router.post("/user/locations/:id/edit", authorize, uploader.array("imageUrl"), (
   let arr = req.files.map(elem => {
     return elem.path
   })
-
+  console.log(arr, 'this is the images array')
   const locationToEdit = {name, location, description, website}
   if (req.files.length) locationToEdit.locPicture = arr // only add locations if user uploaded some new pictures
+  console.log(locationToEdit, 'this is the location after adding the array')
 
   Location.findByIdAndUpdate(id, locationToEdit)
     .then((result) => {
@@ -100,7 +111,8 @@ router.post("/user/locations/:id/edit", authorize, uploader.array("imageUrl"), (
     .catch((err) => {
       console.log(err);
     });
-});
+  }
+);
 
 // Delete location
 router.post("/user/locations/:id/delete", authorize, (req, res, next) => {

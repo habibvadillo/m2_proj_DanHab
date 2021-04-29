@@ -113,6 +113,7 @@ router.post("/signin", (req, res, next) => {
 
 router.get("/logout", (req, res, next) => {
   req.app.locals.isUserLoggedIn = false;
+  req.app.locals.isBusiness = false;
   req.session.destroy();
   res.redirect("/");
 });

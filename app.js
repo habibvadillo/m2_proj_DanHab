@@ -47,6 +47,8 @@ app.use(
 
 app.use((req, res, next) => {
   req.app.locals.isUserLoggedIn = !!req.session.userInfo
+  if (req.session.userInfo) {req.app.locals.isBusiness = req.session.userInfo.isBusiness}
+
   next()
 })
 
