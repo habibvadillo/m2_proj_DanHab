@@ -1,0 +1,54 @@
+@import "../variables.scss";
+
+main {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../images/ski1.jpg);
+  background-position: right 35% bottom 45%;
+}
+#signin-container {
+  h2 {
+    margin: 0;
+  }
+  min-width: 360px;
+  color: $color-primary;
+  text-align: center;
+  padding: 45px 75px;
+  height: auto;
+  background-color: rgba(243, 243, 243, 0.8);
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      font-size: 1.5em;
+      height: 15px;
+      padding: 15px 15px;
+    }
+    button {
+      padding: 15px 15px;
+      background-color: white;
+      color: $color-primary;
+      border-radius: 7px;
+      border: 3px solid $color-primary;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    #signup-link {
+      background-color: $color-primary;
+      color: white;
+      border-radius: 7px;
+      padding: 15px 15px;
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+.error {
+  color: red;
+  font-weight: bold;
+}

@@ -1,10 +1,18 @@
 <h2>Create new location</h2>
 
 <form action="/user/locations/create" method="POST" enctype="multipart/form-data">
-  <label>Ski Resort name</label>
-  <input name="name" type="text" placeholder="Enter the name of the location">
-  <br>
+  <label>Name</label>
+  <input name="name" type="text" placeholder="Enter the name of the location" />
+  <br />
   <label>Country</label>
+<<<<<<< HEAD:views/user/user-locations-create.hbs
+  <input
+    name="location"
+    type="text"
+    placeholder="Enter the name of the country"
+  />
+  <br />
+=======
   <input name="location" type="text" placeholder="Enter the name of the country">
   <br>
   <label>Description</label>
@@ -23,5 +31,11 @@
   <br>
   <input type="file" name="imageUrl" accept="image/png, image/jpg">
   <br>
+<<<<<<< HEAD:views/locations/locations-create.hbs
   <button type="submit">Create the location</button>
 </form>
+=======
+>>>>>>> 102c7945a78fe80d00dbe5fbd691e2704d8fe619:views/locations/locations-create.hbs
+  <button type="submit">Add location</button>
+</form>
+>>>>>>> ba86c507b6220761ead54e13f8dcd5315bef6ec9:views/user/user-locations-create.hbs

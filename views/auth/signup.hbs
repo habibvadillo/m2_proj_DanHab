@@ -1,28 +1,26 @@
-<h2>Fill in your details</h2>
-
-<form action="/signup" method="POST">
-  <h3>Type of account</h3>
-  <input type="radio" id="business" name="isPerson" value="business" >
-  <label for="business">Business</label>
-
-  <br>
-
-  <input type="radio" id="person" name="isPerson" value="person" checked>
-  <label for="person">Person</label>
-
-  <br>
-
-  <label>Username</label>
-  <input name="username" type="text" placeholder="Enter your username"  >
-
-  <label>Email</label>
-  <input name="email" type="email"  placeholder="Enter your email" >
-<br>
-  <label>Password</label>
-  <input name="password" type="password"  placeholder="Enter your Password"  >
-  <button type="submit">Sign Up</button>
-</form>
-
-{{#if msg}}
-  <div class="error">{{msg}}</div>
-{{/if}}
+<main>
+  <div id="signup-container">
+    <h2>Create Account</h2>
+    <br />
+    <form action="/signup" method="POST">
+      <input name="username" type="text" placeholder="Username" />
+      <br />
+      <input name="email" type="text" placeholder="Email" />
+      <br />
+      <input name="password" type="password" placeholder="Create Password" />
+      <br />
+      <div id="business-check">
+        <label for="business">Business Account</label>
+        <input type="checkbox" id="business" name="isBusiness" value="true" />
+      </div>
+      <br />
+      <button type="submit">Sign Up</button>
+    </form>
+    {{#if notBusiness}}
+    <p>You need to sign in as a business to access that page</p>
+    {{/if}}
+    {{#if msg}}
+    <div class="error">{{ msg }}</div>
+    {{/if}}
+  </div>
+</main>

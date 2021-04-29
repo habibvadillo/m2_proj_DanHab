@@ -1,32 +1,37 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const { findOneAndDelete } = require("../models/User.model");
 const UserModel = require("../models/User.model");
 
 // Shows the user the sign in form
 router.get("/signin", (req, res) => {
-  if (req.query.hasOwnProperty('locationid')) {
-    const {locationid} = req.query
-    req.app.locals.isBooking = true
-    req.app.locals.previousLocation = locationid
+  req.session.destroy();
+  let msg;
+  if (req.query.hasOwnProperty("notBusiness")) {
+    msg = "You need to be a business to access that page";
   }
-  else {
-    req.app.locals.isBooking = false
+  if (req.query.hasOwnProperty("locationid")) {
+    const { locationid } = req.query;
+    req.app.locals.isBooking = true;
+    req.app.locals.previousLocation = locationid;
+  } else {
+    req.app.locals.isBooking = false;
   }
-  res.render("auth/signin.hbs", { styles: "signin/signin.css" });
+  res.render("auth/signin.hbs", { styles: "auth/signin.css", msg });
 });
 
 // Shows the user the sign up form
 router.get("/signup", (req, res) => {
-  res.render("auth/signup.hbs", { styles: "signup/signup.css" });
+  res.render("auth/signup.hbs", { styles: "auth/signup.css" });
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, email, password, isPerson } = req.body;
+  const { username, email, password, isBusiness = false } = req.body;
+  console.log(req.body);
+  console.log(typeof isBusiness, "isBusiness value");
   if (!username || !email || !password) {
     res.render("auth/signup.hbs", {
       msg: "Please fill in all details",
-      styles: "signup/signup.css",
+      styles: "auth/signup.css",
     });
     return;
   }
@@ -35,7 +40,7 @@ router.post("/signup", (req, res, next) => {
   const passCharacters = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{1,}/;
   if (!passCharacters.test(password)) {
     res.render("auth/signup.hbs", {
-      styles: "signup/signup.css",
+      styles: "auth/signup.css",
       msg:
         "Password must be min. 8 characters, must have a number, an uppercase Letter, and a special character",
     });
@@ -46,7 +51,7 @@ router.post("/signup", (req, res, next) => {
   const emailAt = /^[^@ ]+@[^@ ]+\.[^@ ]+$/;
   if (!emailAt.test(String(email).toLowerCase())) {
     res.render("auth/signup.hbs", {
-      styles: "signup/signup.css",
+      styles: "auth/signup.css",
       msg: "Please enter a valid email",
     });
     return;
@@ -55,20 +60,16 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(12);
   const hash = bcrypt.hashSync(password, salt);
 
-  if (isPerson == "business") {
-    isBusiness = true;
-  } else {
-    isBusiness = false;
-  }
-
   // create user
-  UserModel.create({ username, email, password: hash, isBusiness, skiPasses: []})
+  UserModel.create({
+    username,
+    email,
+    password: hash,
+    isBusiness,
+    skiPasses: [],
+  })
     .then(() => {
-      if (!isBusiness) {
-        res.redirect("user/profile");
-      } else {
-        res.redirect("user/businessprofile");
-      }
+      res.redirect("/signin");
     })
     .catch((err) => {
       next();
@@ -81,25 +82,24 @@ router.post("/signin", (req, res, next) => {
     .then((response) => {
       if (!response) {
         res.render("auth/signin.hbs", {
-          styles: "signin/signin.css",
-          msg: "Email or password seems to be incorrect",
+          styles: "auth/signin.css",
+          msg: "Error: Incorrect login details",
         });
       } else {
         bcrypt.compare(password, response.password).then((isMatching) => {
           if (isMatching) {
-            console.log(req.app.locals.isBooking)
+            console.log(req.app.locals.isBooking);
             req.session.userInfo = response;
             req.app.locals.isUserLoggedIn = true;
-            
-            if (req.app.locals.isBooking) {         
+
+            if (req.app.locals.isBooking) {
               res.redirect("/locations/" + req.app.locals.previousLocation);
-            }
-            else{
-            res.redirect("/");
+            } else {
+              res.redirect("/");
             }
           } else {
             res.render("auth/signin", {
-              styles: "signin/signin.css",
+              styles: "auth/signin.css",
               msg: "Email or password seems to be incorrect",
             });
           }

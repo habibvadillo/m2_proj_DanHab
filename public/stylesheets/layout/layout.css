@@ -1,3 +1,9 @@
+html {
+  position: relative;
+  min-height: 100%;
+  color: white;
+}
+
 main {
   padding: 0px 20px;
 }
@@ -16,14 +22,14 @@ body {
           justify-content: space-between;
   margin: 0px;
   background-color: #18a0fb;
-  padding: 0px;
+  padding: 0px 0px 60px 0px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 nav {
+  color: #3d3d3d;
   z-index: 100;
   background-color: white;
-  padding: 0px 20px;
   height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,6 +37,7 @@ nav {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  padding: 0px 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -79,6 +86,11 @@ nav ul a li {
 }
 
 footer {
+  color: #3d3d3d;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

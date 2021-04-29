@@ -1,5 +1,11 @@
 @import "../variables.scss";
 
+html {
+  position: relative;
+  min-height: 100%;
+  color: white;
+}
+
 main {
   padding: $all-content-padding;
 }
@@ -11,16 +17,17 @@ body {
   justify-content: space-between;
   margin: 0px;
   background-color: $color-primary;
-  padding: 0px;
+  padding: 0px 0px $footer-height 0px;
   font-family: Arial, Helvetica, sans-serif;
 }
 nav {
+  color: rgb(61, 61, 61);
   z-index: 100;
   background-color: white;
-  padding: $all-content-padding;
   height: 100px;
   display: flex;
   justify-content: flex-end;
+  padding: $all-content-padding;
   align-items: center;
   border-bottom: 1px solid gray;
   #logo {
@@ -57,10 +64,15 @@ nav {
   }
 }
 footer {
+  color: rgb(61, 61, 61);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 60px;
+  height: $footer-height;
   background-color: white;
   padding: $all-content-padding;
 }
