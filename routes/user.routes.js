@@ -5,7 +5,9 @@ const Usermodel = require("../models/User.model");
 const Reservation = require("../models/Reservation.model");
 const uploader = require('../middlewares/cloudinary.config.js');
 
-// BUSINESS ACCOUNT
+
+/// BUSINESS ACCOUNT ///
+
 // middleware to protect routes for business
 const authorize = (req, res, next) => {
   if (req.session?.userInfo && req.session?.userInfo?.isBusiness) {
@@ -15,24 +17,24 @@ const authorize = (req, res, next) => {
   }
 };
 
+// Business account page
 router.get("/user/businessprofile", authorize, (req, res, next) => {
   res.render("user/businessprofile.hbs", {
     styles: "user/businessprofile.css",
   });
 });
 
-// business profile locations
+// Create business locations
 router.get("/user/locations/create", authorize, (req, res, next) => {
   res.render("locations/locations-create.hbs", {
     styles: "locations/locations-create.css",
   });
 });
 
-router.post("/user/locations/create", authorize, (req, res, next) => {
-  const { name, location } = req.body;
+router.post("/user/locations/create", authorize, uploader.single("imageUrl"), (req, res, next) => {
+  const { name, location} = req.body;
   const { _id } = req.session.userInfo;
-  console.log(name, location, _id);
-  Location.create({ name, location, owner: _id })
+  Location.create({ name, location, owner: _id, locPicture: req.file.path })
     .then((result) => {
       res.redirect("/user/locations");
     })
@@ -41,6 +43,7 @@ router.post("/user/locations/create", authorize, (req, res, next) => {
     });
 });
 
+// Business locations
 router.get("/user/locations", authorize, (req, res, next) => {
   const { _id } = req.session.userInfo;
   console.log(_id);
@@ -57,7 +60,7 @@ router.get("/user/locations", authorize, (req, res, next) => {
     });
 });
 
-// EDIT LOCATION
+// Edit location
 router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findById(id)
@@ -84,7 +87,7 @@ router.post("/user/locations/:id/edit", authorize, (req, res, next) => {
     });
 });
 
-// DELETE LOCATION
+// Delete location
 router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findByIdAndDelete(id)
@@ -93,7 +96,8 @@ router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
 });
 
 
-// PERSONAL ACCOUNT
+/// PERSONAL ACCOUNT ///
+
 // middleware to protect routes for personal account
 const authorizePerson = (req, res, next) => {
   if (req.session?.userInfo) {
@@ -103,6 +107,7 @@ const authorizePerson = (req, res, next) => {
   }
 };
 
+// Personal account page
 router.get("/user/profile", authorizePerson, (req, res, next) => {
   Usermodel.findById(req.session.userInfo._id)
     .then((data) => {
@@ -121,7 +126,7 @@ router.get("/user/profile", authorizePerson, (req, res, next) => {
     .catch((err) => {});
 });
 
-
+// Book Skipass
 router.post("/bookpass", (req, res, next) => {
   const {id} = req.body;
   const {_id} = req.session.userInfo
