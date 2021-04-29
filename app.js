@@ -45,6 +45,11 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  req.app.locals.isUserLoggedIn = !!req.session.userInfo
+  next()
+})
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);

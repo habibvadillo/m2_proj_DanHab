@@ -3,6 +3,7 @@ const Location = require("../models/Location.model");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
+  
   Location.find()
     .then((locations) => {
       let uniques = [];

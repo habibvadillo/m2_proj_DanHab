@@ -18,7 +18,6 @@ const userSchema = new Schema({
   },
   isBusiness: Boolean,
 
-  skiPasses: [{type: Schema.Types.ObjectId, ref: 'Location'}]
 });
 
 const User = model("User", userSchema);
