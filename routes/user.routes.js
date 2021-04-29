@@ -23,24 +23,14 @@ router.get("/user/businessprofile", authorize, (req, res, next) => {
     styles: "user/businessprofile.css",
   });
 });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c745c7ad56a6414b9dda3220620678f7923101ea
 // business profile locations
 router.get("/user/locations/create", (req, res, next) => {
   res.render("user/user-locations-create.hbs", {
     styles: "user/user-locations-create.css",
-<<<<<<< HEAD
-=======
 // Create business locations
 router.get("/user/locations/create", authorize, (req, res, next) => {
   res.render("locations/locations-create.hbs", {
     styles: "locations/locations-create.css",
->>>>>>> 102c7945a78fe80d00dbe5fbd691e2704d8fe619
-=======
->>>>>>> c745c7ad56a6414b9dda3220620678f7923101ea
   });
 });
 
