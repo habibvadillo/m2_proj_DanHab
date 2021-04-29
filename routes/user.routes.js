@@ -4,6 +4,7 @@ const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
 const Reservation = require("../models/Reservation.model");
 const uploader = require("../middlewares/cloudinary.config.js");
+const { single } = require("../middlewares/cloudinary.config.js");
 
 /// BUSINESS ACCOUNT ///
 
