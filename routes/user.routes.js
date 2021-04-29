@@ -27,6 +27,8 @@ router.get("/user/businessprofile", authorize, (req, res, next) => {
 router.get("/user/locations/create", (req, res, next) => {
   res.render("user/user-locations-create.hbs", {
     styles: "user/user-locations-create.css",
+  });
+});
 // Create business locations
 router.get("/user/locations/create", authorize, (req, res, next) => {
   res.render("locations/locations-create.hbs", {
@@ -84,7 +86,7 @@ router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
   Location.findById(id)
 
     .then((result) => {
-      console.log(result)
+      console.log(result);
       res.render("user/update-location.hbs", {
         result,
         styles: "user/update-location.css",
@@ -95,25 +97,29 @@ router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
     });
 });
 
-router.post("/user/locations/:id/edit", authorize, uploader.array("imageUrl"), (req, res, next) => {
-  const { id } = req.params;
-  const { name, location, description, website } = req.body;
-  
-  let arr = req.files.map(elem => {
-    return elem.path
-  })
-  console.log(arr, 'this is the images array')
-  const locationToEdit = {name, location, description, website}
-  if (req.files.length) locationToEdit.locPicture = arr // only add locations if user uploaded some new pictures
-  console.log(locationToEdit, 'this is the location after adding the array')
+router.post(
+  "/user/locations/:id/edit",
+  authorize,
+  uploader.array("imageUrl"),
+  (req, res, next) => {
+    const { id } = req.params;
+    const { name, location, description, website } = req.body;
 
-  Location.findByIdAndUpdate(id, locationToEdit)
-    .then((result) => {
-      res.redirect("/user/locations");
-    })
-    .catch((err) => {
-      console.log(err);
+    let arr = req.files.map((elem) => {
+      return elem.path;
     });
+    console.log(arr, "this is the images array");
+    const locationToEdit = { name, location, description, website };
+    if (req.files.length) locationToEdit.locPicture = arr; // only add locations if user uploaded some new pictures
+    console.log(locationToEdit, "this is the location after adding the array");
+
+    Location.findByIdAndUpdate(id, locationToEdit)
+      .then((result) => {
+        res.redirect("/user/locations");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 );
 
