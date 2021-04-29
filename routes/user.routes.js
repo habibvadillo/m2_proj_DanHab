@@ -33,11 +33,21 @@ router.get("/user/locations/create", (req, res, next) => {
 router.post(
   "/user/locations/create",
   authorize,
-  uploader.single("imageUrl"),
+  uploader.array("imageUrl"),
   (req, res, next) => {
-    const { name, location } = req.body;
+    const { name, location, description, website } = req.body;
     const { _id } = req.session.userInfo;
-    Location.create({ name, location, owner: _id, locPicture: req.file.path })
+    let arr = req.files.map((elem) => {
+      return elem.path;
+    });
+    Location.create({
+      name,
+      location,
+      description,
+      website,
+      owner: _id,
+      locPicture: arr,
+    })
       .then((result) => {
         res.redirect("/user/locations");
       })
@@ -79,17 +89,31 @@ router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
     });
 });
 
-router.post("/user/locations/:id/edit", authorize, (req, res, next) => {
-  const { id } = req.params;
-  const { name, location } = req.body;
-  Location.findByIdAndUpdate(id, { name, location })
-    .then((result) => {
-      res.redirect("/user/locations");
-    })
-    .catch((err) => {
-      console.log(err);
+router.post(
+  "/user/locations/:id/edit",
+  authorize,
+  uploader.array("imageUrl"),
+  (req, res, next) => {
+    const { id } = req.params;
+    const { name, location, description, website } = req.body;
+    let arr = req.files.map((elem) => {
+      return elem.path;
     });
-});
+    Location.findByIdAndUpdate(id, {
+      name,
+      location,
+      description,
+      website,
+      locPicture: arr,
+    })
+      .then((result) => {
+        res.redirect("/user/locations");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
 
 // Delete location
 router.post("/user/locations/:id/delete", authorize, (req, res, next) => {

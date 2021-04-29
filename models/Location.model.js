@@ -12,7 +12,8 @@ const locationSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: "User" },
   description: String,
   logo: String,
-  locPicture: String,
+  locPicture: [String],
+  website: String,
 });
 
 const Location = model("Location", locationSchema);
