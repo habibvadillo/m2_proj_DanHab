@@ -1,11 +1,11 @@
 <main>
   <h2>Welcome to your profile</h2>
   <h3>Create amazing memories</h3>
-  {{#each data.skiPasses}}
+  {{#each response}}
   <h3>Ski Pass:</h3>
-  <p>Ski Resort: {{ this.name }}</p>
-  <p>Country: {{ this.location }}</p>
-    <form action='' method="POST">
+  <p>Ski Resort: {{ this.location.name }}</p>
+  <p>Country: {{ this.location.location }}</p>
+    <form action='/user/profile/skipasses/{{this._id}}/cancel' method="POST">
           <button type="submit">Cancel</button>
     </form>
   {{/each}}

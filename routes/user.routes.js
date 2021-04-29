@@ -2,8 +2,11 @@ const router = require("express").Router();
 
 const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
+const Reservation = require("../models/Reservation.model");
+const uploader = require('../middlewares/cloudinary.config.js');
 
-// BUSINESS ACCOUNT
+
+/// BUSINESS ACCOUNT ///
 
 // middleware to protect routes for business
 const authorize = (req, res, next) => {
@@ -14,25 +17,31 @@ const authorize = (req, res, next) => {
   }
 };
 
+// Business account page
 router.get("/user/businessprofile", authorize, (req, res, next) => {
   res.render("user/businessprofile.hbs", {
     styles: "user/businessprofile.css",
   });
 });
 
+<<<<<<< HEAD
 // business profile locations
 router.get("/user/locations/create", (req, res, next) => {
   res.render("user/user-locations-create.hbs", {
     styles: "user/user-locations-create.css",
+=======
+// Create business locations
+router.get("/user/locations/create", authorize, (req, res, next) => {
+  res.render("locations/locations-create.hbs", {
+    styles: "locations/locations-create.css",
+>>>>>>> 102c7945a78fe80d00dbe5fbd691e2704d8fe619
   });
 });
 
-router.post("/user/locations/create", authorize, (req, res, next) => {
-  const { name, location } = req.body;
-
+router.post("/user/locations/create", authorize, uploader.single("imageUrl"), (req, res, next) => {
+  const { name, location} = req.body;
   const { _id } = req.session.userInfo;
-  console.log(name, location, _id);
-  Location.create({ name, location, owner: _id })
+  Location.create({ name, location, owner: _id, locPicture: req.file.path })
     .then((result) => {
       res.redirect("/user/locations");
     })
@@ -41,6 +50,7 @@ router.post("/user/locations/create", authorize, (req, res, next) => {
     });
 });
 
+// Business locations
 router.get("/user/locations", authorize, (req, res, next) => {
   const { _id } = req.session.userInfo;
   console.log(_id);
@@ -57,7 +67,7 @@ router.get("/user/locations", authorize, (req, res, next) => {
     });
 });
 
-// EDIT LOCATION
+// Edit location
 router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findById(id)
@@ -84,7 +94,7 @@ router.post("/user/locations/:id/edit", authorize, (req, res, next) => {
     });
 });
 
-// DELETE LOCATION
+// Delete location
 router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
   const { id } = req.params;
   Location.findByIdAndDelete(id)
@@ -92,39 +102,60 @@ router.post("/user/locations/:id/delete", authorize, (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-//personal profile ////////
 
-router.get("/user/profile", authorize, (req, res, next) => {
+/// PERSONAL ACCOUNT ///
+
+// middleware to protect routes for personal account
+const authorizePerson = (req, res, next) => {
+  if (req.session?.userInfo) {
+    next();
+  } else {
+    res.redirect("/signin");
+  }
+};
+
+// Personal account page
+router.get("/user/profile", authorizePerson, (req, res, next) => {
   Usermodel.findById(req.session.userInfo._id)
-    .populate("skiPasses")
     .then((data) => {
-      res.render("user/profile.hbs", {
-        data,
-        styles: "user/profile.css",
-      });
+      Reservation.find({user: data._id})
+      .populate('location')
+      .populate('user')
+      
+      .then((response) => {
+        res.render("user/profile.hbs", {
+          response,
+          styles: "user/profile.css",
+        });
+
+      })
     })
     .catch((err) => {});
 });
 
+// Book Skipass
 router.post("/bookpass", (req, res, next) => {
-  const { id } = req.body;
-  Location.findById(id)
-    .then((result) => {
-      console.log(result);
-      Usermodel.findByIdAndUpdate(req.session.userInfo._id, {
-        $push: { skiPasses: id },
-      })
-        .then((result) => {
-          console.log(result);
-          res.redirect("user/profile");
-        })
-        .catch((err) => {
-          console.log("FAILED!!");
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const {id} = req.body;
+  const {_id} = req.session.userInfo
+  Reservation.create({skiTicketDate: Date.now(), location: id, user: _id})
+  .then((result) => {
+    res.redirect('/user/profile')
+  }).catch((err) => {
+    console.log(err)
+  });
 });
 
+// Cancel Ski Pass
+router.post("/user/profile/skipasses/:id/cancel", authorizePerson, (req, res, next) => {
+  const { id } = req.params;
+  Reservation.findByIdAndDelete(id)
+  .then((result) => {
+    res.redirect("/user/profile")
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+})
+
 module.exports = router;
+

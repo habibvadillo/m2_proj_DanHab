@@ -33,7 +33,7 @@ router.post("/signup", (req, res, next) => {
   }
 
   // password validation
-  const passCharacters = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
+  const passCharacters = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{1,}/;
   if (!passCharacters.test(password)) {
     res.render("auth/signup.hbs", {
       styles: "auth/signup.css",

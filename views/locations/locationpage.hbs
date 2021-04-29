@@ -2,14 +2,11 @@
   <h2>Welcome to {{ result.name }}</h2>
 
   <h3>{{ result.name }} in a nutshell</h3>
-  <p>bla bla bla</p>
-
-  <img src="/images/ski2.jpg" alt="ski" />
-
-  <img src="/images/ski3.jpg" alt="ski" />
+  <p>random location description</p>
 
   <h2>Book your memories</h2>
-  <img src="/images/ski5.jpg" alt="ski" />
+
+ <img src="{{result.locPicture}}" alt="skiresort">
 
   {{#if isUserLoggedIn}}
   <form action="/bookpass" method="POST">
@@ -21,7 +18,9 @@
     />
     <button type="submit">Book ski pass</button>
   </form>
+
   {{else}}
   <a href="/signin?locationid={{ result.id }}">Sign in to book now</a>
   {{/if}}
+  
 </main>
