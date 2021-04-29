@@ -29,10 +29,25 @@ main {
     }
     button {
       padding: 15px 15px;
+      background-color: white;
+      color: $color-primary;
+      border-radius: 7px;
+      border: 3px solid $color-primary;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    a {
+      padding: 15px 15px;
       background-color: $color-primary;
       color: white;
       border-radius: 7px;
       border: none;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    p {
+      font-weight: bold;
+      margin: 0;
     }
   }
 }

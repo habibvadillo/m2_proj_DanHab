@@ -48,10 +48,27 @@ main {
 
 #signin-container form button {
   padding: 15px 15px;
+  background-color: white;
+  color: #18a0fb;
+  border-radius: 7px;
+  border: 3px solid #18a0fb;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+#signin-container form a {
+  padding: 15px 15px;
   background-color: #18a0fb;
   color: white;
   border-radius: 7px;
   border: none;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+#signin-container form p {
+  font-weight: bold;
+  margin: 0;
 }
 
 .error {
