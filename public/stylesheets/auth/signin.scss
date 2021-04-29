@@ -29,10 +29,22 @@ main {
     }
     button {
       padding: 15px 15px;
+      background-color: white;
+      color: $color-primary;
+      border-radius: 7px;
+      border: 3px solid $color-primary;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    #signup-link {
       background-color: $color-primary;
       color: white;
       border-radius: 7px;
-      border: none;
+      padding: 15px 15px;
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: bold;
     }
   }
 }

@@ -12,7 +12,7 @@ const authorize = (req, res, next) => {
   if (req.session?.userInfo && req.session?.userInfo?.isBusiness) {
     next();
   } else {
-    res.redirect("/signin");
+    res.redirect("/signin?notBusiness=true");
   }
 };
 
@@ -112,20 +112,24 @@ const authorizePerson = (req, res, next) => {
 
 // Personal account page
 router.get("/user/profile", authorizePerson, (req, res, next) => {
-  Usermodel.findById(req.session.userInfo._id)
-    .then((data) => {
-      Reservation.find({ user: data._id })
-        .populate("location")
-        .populate("user")
+  if (req.session.userInfo.isBusiness) {
+    res.redirect("/user/businessprofile");
+  } else {
+    Usermodel.findById(req.session.userInfo._id)
+      .then((data) => {
+        Reservation.find({ user: data._id })
+          .populate("location")
+          .populate("user")
 
-        .then((response) => {
-          res.render("user/profile.hbs", {
-            response,
-            styles: "user/profile.css",
+          .then((response) => {
+            res.render("user/profile.hbs", {
+              response,
+              styles: "user/profile.css",
+            });
           });
-        });
-    })
-    .catch((err) => {});
+      })
+      .catch((err) => {});
+  }
 });
 
 // Book Skipass

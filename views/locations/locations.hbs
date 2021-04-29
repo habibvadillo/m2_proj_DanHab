@@ -1,4 +1,4 @@
-<main>
+<header>
   <h2>All locations</h2>
 
   <form action="/locations" method="GET">
@@ -8,14 +8,14 @@
       <option value="{{ this }}">{{ this }}</option>
       {{/each}}
     </select>
-    <button type="submit">Search</button>
+    <button type="submit">Filter</button>
   </form>
-  {{#each result}}
-  <div>
-    <p>Name: {{ this.name }}</p>
-    <p>Country: {{ this.location }}</p>
-    <a href="/locations/{{ this.id }}">More info</a>
-  </div>
-  <br />
-  {{/each}}
-</main>
+</header>
+{{#each result}}
+<div class="location">
+  <p>{{ this.name }}</p>
+  <p>{{ this.location }}</p>
+  <a href="/locations/{{ this.id }}">More info</a>
+</div>
+<br />
+{{/each}}
