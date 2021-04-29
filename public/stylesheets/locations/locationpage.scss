@@ -1,8 +1,5 @@
 @import "../variables.scss";
 
 header {
-  padding: $all-content-padding;
-  h2 {
-    font-size: 3rem;
-  }
+  @include header-style;
 }
