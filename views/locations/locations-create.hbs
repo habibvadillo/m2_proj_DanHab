@@ -1,14 +1,27 @@
 <h2>Create new location</h2>
 
 <form action="/user/locations/create" method="POST" enctype="multipart/form-data">
-  <label>Name</label>
+  <label>Ski Resort name</label>
   <input name="name" type="text" placeholder="Enter the name of the location">
   <br>
   <label>Country</label>
   <input name="location" type="text" placeholder="Enter the name of the country">
   <br>
+  <label>Description</label>
+  <input name="description" type="text" placeholder="Enter the description of the location">
+  <br>
+  <label>Website</label>
+  <input name="website" type="url" placeholder="Enter the website of the location">
+  <br>
   <label for="image">Add some pictures of your amazing ski resort</label>
+  <br>
   <input type="file" name="imageUrl" accept="image/png, image/jpg">
   <br>
-  <button type="submit">Add location</button>
+  <input type="file" name="imageUrl" accept="image/png, image/jpg">
+  <br>
+  <input type="file" name="imageUrl" accept="image/png, image/jpg">
+  <br>
+  <input type="file" name="imageUrl" accept="image/png, image/jpg">
+  <br>
+  <button type="submit">Create the location</button>
 </form>

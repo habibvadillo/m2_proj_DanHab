@@ -4,6 +4,7 @@ const Location = require("../models/Location.model");
 const Usermodel = require("../models/User.model");
 const Reservation = require("../models/Reservation.model");
 const uploader = require('../middlewares/cloudinary.config.js');
+const { single } = require("../middlewares/cloudinary.config.js");
 
 
 /// BUSINESS ACCOUNT ///
@@ -31,10 +32,13 @@ router.get("/user/locations/create", authorize, (req, res, next) => {
   });
 });
 
-router.post("/user/locations/create", authorize, uploader.single("imageUrl"), (req, res, next) => {
-  const { name, location} = req.body;
+router.post("/user/locations/create", authorize, uploader.array("imageUrl"), (req, res, next) => {
+  const { name, location, description, website} = req.body;
   const { _id } = req.session.userInfo;
-  Location.create({ name, location, owner: _id, locPicture: req.file.path })
+  let arr = req.files.map(elem => {
+    return elem.path
+  })
+  Location.create({ name, location, description, website, owner: _id, locPicture:arr })
     .then((result) => {
       res.redirect("/user/locations");
     })
@@ -75,10 +79,13 @@ router.get("/user/locations/:id/edit", authorize, (req, res, next) => {
     });
 });
 
-router.post("/user/locations/:id/edit", authorize, (req, res, next) => {
+router.post("/user/locations/:id/edit", authorize, uploader.array("imageUrl"), (req, res, next) => {
   const { id } = req.params;
-  const { name, location } = req.body;
-  Location.findByIdAndUpdate(id, { name, location })
+  const { name, location, description, website } = req.body;
+  let arr = req.files.map(elem => {
+    return elem.path
+  })
+  Location.findByIdAndUpdate(id, { name, location, description, website, locPicture:arr })
     .then((result) => {
       res.redirect("/user/locations");
     })

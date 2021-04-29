@@ -2,11 +2,14 @@
   <h2>Welcome to {{ result.name }}</h2>
 
   <h3>{{ result.name }} in a nutshell</h3>
-  <p>random location description</p>
+  <p>{{result.description}}</p>
+  <p>For more information, visit <a href="{{result.website}}">{{result.website}}</a></p>
 
   <h2>Book your memories</h2>
 
- <img src="{{result.locPicture}}" alt="skiresort">
+{{#each result.locPicture}}
+<img src="{{this}}" alt="skiresort">
+{{/each}}
 
   {{#if isUserLoggedIn}}
   <form action="/bookpass" method="POST">
