@@ -1,23 +1,50 @@
 <h2>Create new location</h2>
 
-<form action="/user/locations/create" method="POST" enctype="multipart/form-data">
+<form
+  action="/user/locations/create"
+  method="POST"
+  enctype="multipart/form-data"
+>
   <label>Name</label>
   <input name="name" type="text" placeholder="Enter the name of the location" />
   <br />
   <label>Country</label>
-<<<<<<< HEAD:views/user/user-locations-create.hbs
   <input
     name="location"
     type="text"
     placeholder="Enter the name of the country"
   />
   <br />
-=======
-  <input name="location" type="text" placeholder="Enter the name of the country">
-  <br>
+  <input
+    name="location"
+    type="text"
+    placeholder="Enter the name of the country"
+  />
+  <br />
+  <label>Description</label>
+  <input
+    name="description"
+    type="text"
+    placeholder="Enter the description of the location"
+  />
+  <br />
+  <label>Website</label>
+  <input
+    name="website"
+    type="url"
+    placeholder="Enter the website of the location"
+  />
+  <br />
   <label for="image">Add some pictures of your amazing ski resort</label>
-  <input type="file" name="imageUrl" accept="image/png, image/jpg">
-  <br>
->>>>>>> 102c7945a78fe80d00dbe5fbd691e2704d8fe619:views/locations/locations-create.hbs
+  <br />
+  <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+  <br />
+  <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+  <br />
+  <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+  <br />
+  <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+  <br />
   <button type="submit">Add location</button>
+  <button type="submit">Create the location</button>
 </form>

@@ -1,10 +1,14 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const { findOneAndDelete } = require("../models/User.model");
 const UserModel = require("../models/User.model");
 
 // Shows the user the sign in form
 router.get("/signin", (req, res) => {
+  req.session.destroy();
+  let msg;
+  if (req.query.hasOwnProperty("notBusiness")) {
+    msg = "You need to be a business to access that page";
+  }
   if (req.query.hasOwnProperty("locationid")) {
     const { locationid } = req.query;
     req.app.locals.isBooking = true;
@@ -12,7 +16,7 @@ router.get("/signin", (req, res) => {
   } else {
     req.app.locals.isBooking = false;
   }
-  res.render("auth/signin.hbs", { styles: "auth/signin.css" });
+  res.render("auth/signin.hbs", { styles: "auth/signin.css", msg });
 });
 
 // Shows the user the sign up form
@@ -109,6 +113,7 @@ router.post("/signin", (req, res, next) => {
 
 router.get("/logout", (req, res, next) => {
   req.app.locals.isUserLoggedIn = false;
+  req.app.locals.isBusiness = false;
   req.session.destroy();
   res.redirect("/");
 });

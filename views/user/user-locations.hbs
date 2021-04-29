@@ -1,15 +1,22 @@
-<h2>See all your locations</h2>
+<header>
+      <h2>Your locations</h2>
+      <a href="/user/locations/create">Add a new location</a>
+</header>
 
-{{#each locations}}
-<div>
-  <p>Name: {{ this.name }}</p>
-  <p>Country: {{ this.location }}</p>
-    <form action='locations/{{this._id}}/edit' method="GET">
-          <button type="submit">Edit</button>
-    </form>  
-    <form action='locations/{{this._id}}/delete' method="POST">
-          <button type="submit">Delete</button>
-    </form>
-</div>
+  {{#each locations}}
+  <div class='location'>
+    <p id="name">{{ this.name }}</p>
+    <p id="country">{{ this.location }}</p>
+    <p id="description">{{ this.description }}</p>
+      <div id="buttons">
+            <form action="locations/{{ this._id }}/edit" method="GET">
+                  <button type="submit">Edit</button>
+            </form>
+            <form action="locations/{{ this._id }}/delete" method="POST">
+                  <button type="submit">Delete</button>
+            </form>
+      </div>
+  </div>
 
-{{/each}}
+  {{/each}}
+</main>

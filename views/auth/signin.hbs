@@ -8,11 +8,13 @@
       <button type="submit">Sign In</button>
       <br />
       <p>or</p>
-      <br />
-      <a id="signup-link" href="/signup">Sign Up First</a>
+      <a href="/signup" id="signup-link">Create Account</a>
     </form>
-    {{#if msg}}
     <br />
+    {{#if notBusiness}}
+    <p>You need to sign in as a business to access that page</p>
+    {{/if}}
+    {{#if msg}}
     <div class="error">{{ msg }}</div>
     {{/if}}
   </div>

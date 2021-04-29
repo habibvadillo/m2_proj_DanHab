@@ -5,14 +5,14 @@ main {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-image: url(../../images/ski1.jpg);
   background-position: right 35% bottom 45%;
 }
@@ -36,8 +36,8 @@ main {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 #signin-container form input {
@@ -47,28 +47,23 @@ main {
 }
 
 #signin-container form button {
-  padding: 15px 15px;
-  background-color: white;
-  color: #18a0fb;
-  border-radius: 7px;
-  border: 3px solid #18a0fb;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-#signin-container form a {
-  padding: 15px 15px;
   background-color: #18a0fb;
   color: white;
   border-radius: 7px;
-  border: none;
-  text-decoration: none;
+  padding: 15px 15px;
   font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-#signin-container form p {
+#signin-container form #signup-link {
+  background-color: #18a0fb;
+  color: white;
+  border-radius: 7px;
+  padding: 15px 15px;
+  font-size: 1rem;
+  text-decoration: none;
   font-weight: bold;
-  margin: 0;
 }
 
 .error {
