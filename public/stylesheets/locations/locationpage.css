@@ -25,6 +25,7 @@ header h2 {
 
 main {
   padding: 0px 20px;
+  height: auto;
 }
 
 #loc-sign-in {
@@ -35,7 +36,22 @@ main {
   font-size: 1rem;
   text-decoration: none;
   font-weight: bold;
+  width: 160px;
+  display: block;
   background-color: white;
   color: #18a0fb;
+  margin-bottom: 50px;
+}
+
+#images-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 /*# sourceMappingURL=locationpage.css.map */

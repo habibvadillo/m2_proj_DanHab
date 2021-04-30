@@ -7,12 +7,11 @@
     For more information, visit
     <a href="{{ result.website }}">Our Website</a>
   </p>
-  {{#each result.locPicture}}
-  <img src="{{ this }}" alt="skiresort" />
-  {{/each}}
-  <br />
-  <br />
-  <br />
+  <div id="images-container">
+    {{#each result.locPicture}}
+    <img src="{{ this }}" width="40%" alt="skiresort" />
+    {{/each}}
+  </div>
 
   {{#if isUserLoggedIn}}
   <form action="/bookpass" method="POST">

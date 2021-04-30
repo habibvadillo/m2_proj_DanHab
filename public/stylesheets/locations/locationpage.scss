@@ -5,9 +5,19 @@ header {
 }
 main {
   padding: $all-content-padding;
+  height: auto;
 }
 #loc-sign-in {
   @include button-link;
+  width: 160px;
+  display: block;
   background-color: white;
   color: $color-primary;
+  margin-bottom: 50px;
+}
+#images-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
