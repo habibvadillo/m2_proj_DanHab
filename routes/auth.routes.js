@@ -4,7 +4,6 @@ const UserModel = require("../models/User.model");
 
 // Shows the user the sign in form
 router.get("/signin", (req, res) => {
-  req.session.destroy();
   let msg;
   if (req.query.hasOwnProperty("notBusiness")) {
     msg = "You need to be a business to access that page";
