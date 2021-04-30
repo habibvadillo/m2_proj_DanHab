@@ -19,6 +19,7 @@ router.get("/locations", (req, res, next) => {
         }
       });
       Location.find(queryObj).then((result) => {
+        console.log(result);
         res.render("locations/locations.hbs", {
           result,
           uniques,
