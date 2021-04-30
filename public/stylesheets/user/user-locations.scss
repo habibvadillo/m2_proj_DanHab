@@ -4,10 +4,10 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(../../images/resort-3.jpg);
+  background-image: url(../../images/ski5.jpg);
   background-position: 50% 50%;
-  height: auto;
-  padding: 20px 0;
+  height: 170px;
+  padding: 130px 0;
   h2 {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 100%;
@@ -36,7 +36,7 @@ form {
   padding: $all-content-padding;
   background-color: white;
   color: $color-primary;
-  width: 100%;
+  width: auto;
   height: 300px;
   p {
     font-size: 1rem;

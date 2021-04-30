@@ -9,10 +9,10 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url(../../images/resort-3.jpg);
+  background-image: url(../../images/ski5.jpg);
   background-position: 50% 50%;
-  height: auto;
-  padding: 20px 0;
+  height: 170px;
+  padding: 130px 0;
 }
 
 header h2 {
@@ -61,7 +61,7 @@ form {
   padding: 0px 20px;
   background-color: white;
   color: #18a0fb;
-  width: 100%;
+  width: auto;
   height: 300px;
 }
 

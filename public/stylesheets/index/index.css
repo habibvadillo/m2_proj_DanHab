@@ -1,6 +1,6 @@
 header {
   height: 100vh;
-  width: 100%;
+  width: auto;
   padding: 0px 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,13 +56,5 @@ header form button {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   height: 40px;
-}
-
-section.location-preview {
-  padding: 0px 20px;
-  padding: 0px;
-  height: 90vh;
-  width: 100%;
-  border-bottom: 5px solid gray;
 }
 /*# sourceMappingURL=index.css.map */
