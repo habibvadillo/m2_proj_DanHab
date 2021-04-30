@@ -9,7 +9,8 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url(../../images/resort-3.jpg);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../../images/resort-3.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/resort-3.jpg);
   background-position: 50% 50%;
   height: auto;
   padding: 20px 0;
@@ -20,5 +21,21 @@ header h2 {
   border-radius: 100%;
   margin: 0;
   font-size: 3em;
+}
+
+main {
+  padding: 0px 20px;
+}
+
+#loc-sign-in {
+  background-color: #18a0fb;
+  color: white;
+  border-radius: 7px;
+  padding: 15px 15px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: white;
+  color: #18a0fb;
 }
 /*# sourceMappingURL=locationpage.css.map */

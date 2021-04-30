@@ -3,3 +3,11 @@
 header {
   @include header-style;
 }
+main {
+  padding: $all-content-padding;
+}
+#loc-sign-in {
+  @include button-link;
+  background-color: white;
+  color: $color-primary;
+}

@@ -1,5 +1,4 @@
 main {
-  height: 170vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,10 +13,12 @@ main {
       -ms-flex-align: center;
           align-items: center;
   background-image: url(../../images/ski2.jpg);
+  background-repeat: no-repeat;
   background-position: right 35% bottom 45%;
 }
 
 #create-loc-container {
+  margin: 50px 0px;
   min-width: 360px;
   color: #18a0fb;
   text-align: center;

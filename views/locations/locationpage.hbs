@@ -1,17 +1,18 @@
 <header>
   <h2>{{ result.name }}</h2>
-
-  
 </header>
-
-<p>{{ result.description }}</p>
-<p>
-  For more information, visit
-  <a href="{{ result.website }}">Our Website</a>
-</p>
+<main>
+  <p>{{ result.description }}</p>
+  <p>
+    For more information, visit
+    <a href="{{ result.website }}">Our Website</a>
+  </p>
   {{#each result.locPicture}}
   <img src="{{ this }}" alt="skiresort" />
   {{/each}}
+  <br />
+  <br />
+  <br />
 
   {{#if isUserLoggedIn}}
   <form action="/bookpass" method="POST">
@@ -23,8 +24,9 @@
     />
     <button type="submit">Book ski pass</button>
   </form>
-
   {{else}}
-  <a href="/signin?locationid={{ result.id }}">Sign in to book now</a>
+  <a id="loc-sign-in" href="/signin?locationid={{ result.id }}"
+    >Sign in to book now</a
+  >
   {{/if}}
 </main>
