@@ -1,50 +1,57 @@
-<h2>Update the information for {{result.name}}</h2>
+<main>
 
-<form action="/user/locations/{{result._id}}/edit" method="POST" enctype="multipart/form-data"> 
-    <label for="name">Name</label>
-    <input type="text" name="name" value="{{result.name}}">
+    <div id="update-loc-container">
+    <h2>Update the information for {{result.name}}</h2>
 
-    <br> 
+    <form action="/user/locations/{{result._id}}/edit" method="POST" enctype="multipart/form-data"> 
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{result.name}}">
 
-    <label for="location">Location</label>
-    <input type="text" name="location" value="{{result.location}}">
+        <br> 
 
-    <br>
+        <label for="location">Location</label>
+        <input type="text" name="location" value="{{result.location}}">
 
-    <label for="description">Description</label>
-    <input type="text" name="description" value="{{result.description}}">
+        <br />
 
-    <br>
+        <label>Description</label>
+        <textarea id="description" name="description" rows="1" cols="10" placeholder="Enter the description of the location"></textarea>
+       
+        <br />
 
-    <label for="website">Website</label>
-    <input type="url" name="website" value="{{result.website}}">
+        <label for="website">Website</label>
+        <input type="url" name="website" value="{{result.website}}">
 
-    <br>
+        <br>
 
-    <label for="image">Add some pictures of your amazing ski resort</label>
+        <label for="image">Add some pictures of your amazing ski resort</label>
 
-    <br>
+        <br>
 
-    {{#each result.locPicture}}
-    <img src="{{this}}" alt="", width="200px">
-    {{/each}}
-    <br>
+        {{#each result.locPicture}}
+        <img src="{{this}}" alt="", width="200px">
+        {{/each}}
+        <br>
 
-    <input type="file" name="imageUrl" value="{{result.locPicture.[0]}}" accept="image/png, image/jpg">
+        <input type="file" name="imageUrl" value="{{result.locPicture.[0]}}" accept="image/png, image/jpg">
 
-    <br>
+        <br>
 
-    <input type="file" name="imageUrl" value="{{result.locPicture.[1]}}" accept="image/png, image/jpg">
+        <input type="file" name="imageUrl" value="{{result.locPicture.[1]}}" accept="image/png, image/jpg">
 
-    <br>
+        <br>
 
-    <input type="file" name="imageUrl" value="{{result.locPicture.[2]}}" accept="image/png, image/jpg">
+        <input type="file" name="imageUrl" value="{{result.locPicture.[2]}}" accept="image/png, image/jpg">
 
-    <br>
+        <br>
 
-    <input type="file" name="imageUrl" value="{{result.locPicture.[3]}}" accept="image/png, image/jpg">
-    <br>
-    
-    <button type="submit">Update</button>
+        <input type="file" name="imageUrl" value="{{result.locPicture.[3]}}" accept="image/png, image/jpg">
+        <br>
+        
+        <button type="submit">Update</button>
 
-</form> 
+    </form> 
+
+    </div>
+
+</main>

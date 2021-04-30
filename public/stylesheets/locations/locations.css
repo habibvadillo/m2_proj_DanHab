@@ -14,6 +14,9 @@ header {
   background-position: 50% 50%;
   height: auto;
   padding: 20px 0;
+  background-image: url(../../images/snb10.jpg);
+  height: auto;
+  padding: 70px 0;
 }
 
 header h2 {
@@ -21,6 +24,19 @@ header h2 {
   border-radius: 100%;
   margin: 0;
   font-size: 3em;
+}
+
+header {
+  background-position: 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 300px;
+}
+
+h2 {
+  font-size: 3em;
+  text-align: center;
 }
 
 form {
@@ -41,7 +57,7 @@ form {
   padding: 0px 20px;
   background-color: white;
   color: #18a0fb;
-  width: 100%;
+  width: auto;
   height: 300px;
   border-bottom: 2px solid grey;
 }

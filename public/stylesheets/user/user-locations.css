@@ -9,11 +9,15 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../../images/resort-3.jpg);
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/resort-3.jpg);
+=======
+  background-image: url(../../images/ski5.jpg);
+>>>>>>> eeb28d67285cea17190a9a46ce62a29191fccb7d
   background-position: 50% 50%;
-  height: auto;
-  padding: 20px 0;
+  height: 170px;
+  padding: 130px 0;
 }
 
 header h2 {
@@ -79,8 +83,12 @@ form {
   background-color: white;
   color: #18a0fb;
   width: auto;
+<<<<<<< HEAD
   height: auto;
   border-bottom: 2px solid grey;
+=======
+  height: 300px;
+>>>>>>> eeb28d67285cea17190a9a46ce62a29191fccb7d
 }
 
 .location p {

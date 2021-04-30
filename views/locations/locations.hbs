@@ -2,7 +2,7 @@
   <h2>All locations</h2>
 
   <form action="/locations" method="GET">
-    <label for="country">Country:</label>
+    <label for="country">Pick a country:</label>
     <select name="country" id="country">
       {{#each uniques}}
       <option value="{{ this }}">{{ this }}</option>
@@ -11,6 +11,7 @@
     <button type="submit">Filter</button>
   </form>
 </header>
+
 {{#each result}}
 <div
   class="location"
