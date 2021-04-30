@@ -23,16 +23,10 @@ router.get("/user/businessprofile", authorize, (req, res, next) => {
     styles: "user/businessprofile.css",
   });
 });
-// business profile locations
-router.get("/user/locations/create", (req, res, next) => {
-  res.render("user/user-locations-create.hbs", {
-    styles: "user/user-locations-create.css",
-  });
-});
 // Create business locations
 router.get("/user/locations/create", authorize, (req, res, next) => {
-  res.render("locations/locations-create.hbs", {
-    styles: "locations/locations-create.css",
+  res.render("user/user-locations-create.hbs", {
+    styles: "user/user-locations-create.css",
   });
 });
 

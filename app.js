@@ -24,8 +24,9 @@ const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)} created with Ironlauncher`;
-app.locals.isBooking = false
-app.locals.previousLocation = null
+app.locals.isBooking = false;
+app.locals.previousLocation = null;
+app.locals.isBusiness = false;
 
 // Set up session
 const session = require("express-session");
@@ -46,11 +47,13 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  req.app.locals.isUserLoggedIn = !!req.session.userInfo
-  if (req.session.userInfo) {req.app.locals.isBusiness = req.session.userInfo.isBusiness}
+  req.app.locals.isUserLoggedIn = !!req.session.userInfo;
+  if (req.session.userInfo) {
+    req.app.locals.isBusiness = req.session.userInfo.isBusiness;
+  }
 
-  next()
-})
+  next();
+});
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
