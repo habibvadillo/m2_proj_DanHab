@@ -5,6 +5,33 @@ header {
   
 }
 
+header {
+  background-position: 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 600px;
+  position: relative;
+}
+
+h2 {
+  padding: 70px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 3em;
+}
+h4 {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+h3 {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
 .btn-business {
   padding: 15px 15px;
   background-color: $color-primary;
