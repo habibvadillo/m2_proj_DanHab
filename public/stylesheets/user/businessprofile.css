@@ -1,1 +1,33 @@
-/* No CSS *//*# sourceMappingURL=businessprofile.css.map */
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: url(../../images/resort-3.jpg);
+  background-position: 50% 50%;
+  height: auto;
+  padding: 20px 0;
+}
+
+header h2 {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 100%;
+  margin: 0;
+  font-size: 3em;
+}
+
+.btn-business {
+  padding: 15px 15px;
+  background-color: #18a0fb;
+  color: white;
+  border-radius: 7px;
+  border: none;
+  font-size: 1.5rem;
+}
+/*# sourceMappingURL=businessprofile.css.map */

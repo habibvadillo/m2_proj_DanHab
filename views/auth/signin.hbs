@@ -1,5 +1,6 @@
 <main>
   <div id="signin-container">
+    <h2>Sing In</h2>
     <form method="POST" action="/signin">
       <input type="email" name="email" placeholder="Your Email" />
       <br />
@@ -8,7 +9,7 @@
       <button type="submit">Sign In</button>
       <br />
       <p>or</p>
-      <a href="signup" id="signup-link">Create Account</a>
+      <a href="/signup" id="signup-link">Create Account</a>
     </form>
     <br />
     {{#if notBusiness}}

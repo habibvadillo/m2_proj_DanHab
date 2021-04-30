@@ -1,15 +1,17 @@
-<main>
-  <h2>Welcome to {{ result.name }}</h2>
+<header>
+  <h2>{{ result.name }}</h2>
 
-  <h3>{{ result.name }} in a nutshell</h3>
-  <p>{{result.description}}</p>
-  <p>For more information, visit <a href="{{result.website}}">{{result.website}}</a></p>
+  
+</header>
 
-  <h2>Book your memories</h2>
-
-{{#each result.locPicture}}
-<img src="{{this}}" alt="skiresort">
-{{/each}}
+<p>{{ result.description }}</p>
+<p>
+  For more information, visit
+  <a href="{{ result.website }}">Our Website</a>
+</p>
+  {{#each result.locPicture}}
+  <img src="{{ this }}" alt="skiresort" />
+  {{/each}}
 
   {{#if isUserLoggedIn}}
   <form action="/bookpass" method="POST">
@@ -25,5 +27,4 @@
   {{else}}
   <a href="/signin?locationid={{ result.id }}">Sign in to book now</a>
   {{/if}}
-  
 </main>

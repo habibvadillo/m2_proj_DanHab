@@ -1,0 +1,71 @@
+main {
+  height: 170vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: url(../../images/ski2.jpg);
+  background-position: right 35% bottom 45%;
+}
+
+#create-loc-container {
+  min-width: 360px;
+  color: #18a0fb;
+  text-align: center;
+  padding: 45px 75px;
+  height: auto;
+  background-color: rgba(243, 243, 243, 0.8);
+}
+
+#create-loc-container h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+#create-loc-container form {
+  font-size: 1.5rem;
+  color: #757575;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#create-loc-container form input {
+  font-size: 1.5rem;
+  height: 15px;
+  padding: 15px 15px;
+}
+
+#create-loc-container form textarea {
+  font-size: 1.5rem;
+  height: 15px;
+  padding: 15px 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#create-loc-container form button {
+  padding: 15px 15px;
+  background-color: #18a0fb;
+  color: white;
+  border-radius: 7px;
+  border: none;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+/*# sourceMappingURL=user-locations-create.css.map */

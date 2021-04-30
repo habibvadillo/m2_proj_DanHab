@@ -1,0 +1,18 @@
+@import "../variables.scss";
+
+header {
+  @include header-style;
+  
+}
+
+.btn-business {
+  padding: 15px 15px;
+  background-color: $color-primary;
+  color: white;
+  border-radius: 7px;
+  border: none;
+  font-size: 1.5rem;
+}
+
+
+
