@@ -17,18 +17,11 @@
         <a href="/locations"><li>All Locations</li></a>
         {{#if isBusiness}}
         <a href="/user/locations"><li>My Locations</li></a>
-        <a href="/locations"><li>Support</li></a>
-        {{else}}
-        <a href="/locations"><li>About Us</li></a>
-        <a href="/locations"><li>Contact Us</li></a>
-        <a href="/locations"><li>For Business</li></a>
+        <a href="/user/locations/create"><li>Create new Location</li></a>
         {{/if}}
       </ul>
-
       <ul id="right-nav">
         {{#if isUserLoggedIn}}
-        <a href="/user/locations/create"><li>Create new Location</li></a>
-        <a href="/user/locations"><li>My Locations</li></a>
         <a href="/user/profile"><li>My Profile</li></a>
         <a href="/logout"><li id="logout">Logout</li></a>
         {{else}}

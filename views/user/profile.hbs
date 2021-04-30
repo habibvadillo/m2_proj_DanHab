@@ -1,12 +1,18 @@
 <main>
-  <h2>Welcome to your profile</h2>
-  <h3>Create amazing memories</h3>
-  {{#each response}}
-  <h3>Ski Pass:</h3>
-  <p>Ski Resort: {{ this.location.name }}</p>
-  <p>Country: {{ this.location.location }}</p>
-    <form action='/user/profile/skipasses/{{this._id}}/cancel' method="POST">
-          <button type="submit">Cancel</button>
-    </form>
-  {{/each}}
+  <div class="alldiv">
+    <div class="divtext">
+      <h2>Welcome to your profile</h2>
+      <h3>Create amazing memories</h3>
+      <h4>Your ski passes</h4>
+    </div>
+    <div class="skipasses">
+      {{#each response}}
+      <p>Ski Resort: {{ this.location.name }}</p>
+      <p>Country: {{ this.location.location }}</p>
+        <form action='/user/profile/skipasses/{{this._id}}/cancel' method="POST">
+              <button type="submit">Cancel</button>
+        </form>
+      {{/each}}
+    </div>
+  </div>
 </main>
